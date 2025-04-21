@@ -41,7 +41,7 @@
    npm run dev -- --force
    ```
 
-   Фронтенд будет доступен по адресу `http://localhost:5173`.
+   Фронтенд будет доступен по адресу `http://localhost:3000`.
 
 ### Запуск с помощью Docker и Docker Compose
 
