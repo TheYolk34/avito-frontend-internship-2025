@@ -76,6 +76,7 @@ const TasksPage = () => {
               backgroundColor: 'white',
               borderRadius: '20px',
               '& .MuiOutlinedInput-root': {
+                height: '100%',
                 borderRadius: '20px',
                 paddingRight: 0,
                 '& fieldset': {
@@ -106,6 +107,7 @@ const TasksPage = () => {
               backgroundColor: 'white',
               borderRadius: '20px',
               '& .MuiOutlinedInput-root': {
+                height: '100%',
                 borderRadius: '20px',
                 paddingRight: 0,
                 '& fieldset': {
@@ -132,10 +134,10 @@ const TasksPage = () => {
           onClick={() => setIsFiltersOpen(true)}
           sx={{
             alignSelf: 'flex-end',
-            width: 200,
+            width: 130,
             backgroundColor: 'black',
             color: 'white',
-            fontSize: '1.3rem',
+            fontSize: '1.1rem',
             padding: '12px 24px',
             borderRadius: '30px',
             boxShadow: 'none',
@@ -255,7 +257,7 @@ const TasksPage = () => {
             width: 250,
             backgroundColor: 'black',
             color: 'white',
-            fontSize: '1.3rem',
+            fontSize: '1.1rem',
             padding: '12px 24px',
             borderRadius: '30px',
             boxShadow: 'none',
