@@ -8,7 +8,7 @@ import { http, HttpResponse } from 'msw'
      }),
      http.post('http://localhost:8080/api/v1/tasks', () => {
        return HttpResponse.json(
-         { id: '1', title: 'Test Task', description: '', status: 'TODO', priority: 'LOW', assignee: '', boardId: '1' },
+         { id: '1', title: 'Test Task', description: '', status: 'Backlog', priority: 'Low', assignee: '', boardId: '1' },
          { status: 201 }
        )
      }),
@@ -20,7 +20,7 @@ import { http, HttpResponse } from 'msw'
      }),
      http.get('http://localhost:8080/api/v1/tasks', () => {
        return HttpResponse.json([
-         { id: '1', title: 'Test Task', description: 'Test', status: 'TODO', priority: 'LOW', assignee: 'User1', boardId: '1' },
+         { id: '1', title: 'Test Task', description: 'Test', status: 'Backlog', priority: 'Low', assignee: 'User1', boardId: '1' },
          { id: '2', title: 'Another Task', description: 'Test 2', status: 'DONE', priority: 'HIGH', assignee: 'User2', boardId: '1' }
        ], { status: 200 })
      }),

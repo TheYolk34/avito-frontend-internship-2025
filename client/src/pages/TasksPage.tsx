@@ -19,7 +19,6 @@ const TasksPage = () => {
   const [titleSearch, setTitleSearch] = useState<string>('')
   const [assigneeFilter, setAssigneeFilter] = useState<string>('')
 
-  // Отладка: выведем задачи и их assignee в консоль
   useEffect(() => {
     if (tasks) {
       console.log('Tasks:', tasks)
@@ -64,17 +63,16 @@ const TasksPage = () => {
   }
 
   return (
-    <Box sx={{ p: 3, display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-        {/* Поля поиска слева */}
-        <Box sx={{ display: 'flex', gap: 2 }}>
+    <Box sx={{ p: 6, display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
+        <Box sx={{ display: 'flex', gap: 3, marginLeft: 8 }}>
           <TextField
             placeholder="Поиск по Названию"
             value={titleSearch}
             onChange={(e) => setTitleSearch(e.target.value)}
             variant="outlined"
             sx={{
-              width: 210,
+              width: 300,
               backgroundColor: 'white',
               borderRadius: '20px',
               '& .MuiOutlinedInput-root': {
@@ -92,19 +90,19 @@ const TasksPage = () => {
                 },
               },
               '& input': {
-                padding: '10px 14px',
-                color: '#222', // Сделали текст темнее
+                padding: '14px 18px',
+                color: '#222',
+                fontSize: '1.2rem',
               },
             }}
           />
-
           <TextField
             placeholder="Поиск по Исполнителю"
             value={assigneeFilter}
             onChange={(e) => setAssigneeFilter(e.target.value)}
             variant="outlined"
             sx={{
-              width: 210,
+              width: 300,
               backgroundColor: 'white',
               borderRadius: '20px',
               '& .MuiOutlinedInput-root': {
@@ -122,41 +120,55 @@ const TasksPage = () => {
                 },
               },
               '& input': {
-                padding: '10px 14px',
-                color: '#222', // Сделали текст темнее
+                padding: '14px 18px',
+                color: '#222',
+                fontSize: '1.2rem',
               },
             }}
           />
         </Box>
-        {/* Кнопка фильтров справа */}
         <Button
           variant="contained"
           onClick={() => setIsFiltersOpen(true)}
-          sx={{ alignSelf: 'flex-end', width: 200 }}
+          sx={{
+            alignSelf: 'flex-end',
+            width: 200,
+            backgroundColor: 'black',
+            color: 'white',
+            fontSize: '1.3rem',
+            padding: '12px 24px',
+            borderRadius: '30px',
+            boxShadow: 'none',
+            marginRight: 20,
+            '&:hover': {
+              backgroundColor: '#333',
+              boxShadow: 'none',
+            },
+          }}
         >
           Фильтры
         </Button>
       </Box>
-
-      {/* Окно с задачами */}
       <Box
         sx={{
           flex: 1,
-          border: '2px solid rgb(148, 199, 244)',
+          border: 'none',
           borderRadius: 2,
           overflowY: 'auto',
           p: 1.125,
           mb: 1,
-          maxHeight: '60vh',
+          maxHeight: '355px',
+          width: '80%',
+          alignSelf: 'center',
           '&::-webkit-scrollbar': {
-            width: '10px',
+            width: '14px',
           },
           '&::-webkit-scrollbar-thumb': {
-            backgroundColor: 'primary.main',
-            borderRadius: '10px',
+            backgroundColor: '#00A8FF',
+            borderRadius: '4px',
           },
           '&::-webkit-scrollbar-track': {
-            backgroundColor: '#f1f1f1',
+            backgroundColor: 'white',
           },
         }}
       >
@@ -165,10 +177,11 @@ const TasksPage = () => {
             <Card
               key={task.id}
               sx={{
-                mt: 0.75, 
-                mb: 0.75, 
+                mt: 0.75,
+                mb: 0.75,
                 boxShadow: 'none',
-                border: '2px solid #4ba7f6',
+                border: 'none',
+                borderRadius: '20px',
               }}
             >
               <CardContent
@@ -179,35 +192,48 @@ const TasksPage = () => {
                   p: 0,
                 }}
               >
-                <Box sx={{ ml: 2 }}>
+                <Box sx={{ ml: 4, display: 'flex', flexDirection: 'column', height: '100%' }}>
                   <Typography variant="h6" sx={{ fontSize: '1.5rem' }}>
                     {task.title}
+                  </Typography>
+                  <Typography variant="body2" sx={{ fontSize: '1rem', color: 'text.secondary', mt: 0.5 }}>
+                    Исполнитель: {task.assignee?.fullName || 'Не назначен'}
                   </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mr: 2, alignItems: 'center' }}>
                   <Button
                     onClick={() => handleEditTask(task)}
-                    variant="outlined"
+                    variant="contained"
                     size="small"
                     sx={{
                       mt: 3,
                       width: 200,
-                      borderWidth: '2px',
+                      backgroundColor: '#ededed',
+                      color: 'black',
+                      boxShadow: 'none',
                       fontWeight: 750,
-                      fontSize: '12px', 
+                      fontSize: '12px',
+                      '&:hover': {
+                        backgroundColor: '#d5d5d5',
+                      },
                     }}
                   >
                     Редактировать задачу
                   </Button>
                   <Button
                     onClick={() => handleBoardClick(task)}
-                    variant="outlined"
+                    variant="contained"
                     size="small"
                     sx={{
                       width: 200,
-                      borderWidth: '2px',
+                      backgroundColor: '#ededed',
+                      color: 'black',
+                      boxShadow: 'none',
                       fontWeight: 750,
-                      fontSize: '12px', 
+                      fontSize: '12px',
+                      '&:hover': {
+                        backgroundColor: '#d5d5d5',
+                      },
                     }}
                   >
                     Перейти к доске
@@ -220,30 +246,34 @@ const TasksPage = () => {
           <Typography>Нет доступных задач</Typography>
         )}
       </Box>
-
-      {/* Кнопка "Создать задачу" снизу справа */}
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginRight: 20, mt: 1 }}>
         <Button
           variant="contained"
           color="primary"
           onClick={handleCreateTask}
-          sx={{ width: 200 }}
+          sx={{
+            width: 250,
+            backgroundColor: 'black',
+            color: 'white',
+            fontSize: '1.3rem',
+            padding: '12px 24px',
+            borderRadius: '30px',
+            boxShadow: 'none',
+            '&:hover': {
+              backgroundColor: '#333',
+              boxShadow: 'none',
+            },
+          }}
         >
           Создать задачу
         </Button>
       </Box>
-
-      {/* Форма редактирования задачи */}
       {selectedTask && (
         <EditTaskForm open={!!selectedTask} onClose={handleCloseTaskForm} task={selectedTask} />
       )}
-
-      {/* Форма создания задачи */}
       {isCreatingTask && (
         <CreateTaskForm open={isCreatingTask} onClose={handleCloseTaskForm} />
       )}
-
-      {/* Модальное окно с фильтрами */}
       <Modal open={isFiltersOpen} onClose={() => setIsFiltersOpen(false)}>
         <Box
           sx={{
@@ -262,13 +292,25 @@ const TasksPage = () => {
             setStatusFilter={setStatusFilter}
             boardFilter={boardFilter}
             setBoardFilter={setBoardFilter}
-            assigneeFilter={assigneeFilter}
-            setAssigneeFilter={setAssigneeFilter}
           />
           <Button
             variant="contained"
             onClick={() => setIsFiltersOpen(false)}
-            sx={{ mt: 2, width: 200 }}
+            sx={{
+              mt: 2,
+              width: 250,
+              backgroundColor: '#00A8FF',
+              fontSize: '1rem',
+              padding: '12px 24px',
+              borderRadius: '30px',
+              boxShadow: 'none',
+              mx: 'auto',
+              display: 'block',
+              '&:hover': {
+                backgroundColor: '#0090e5',
+                boxShadow: 'none',
+              },
+            }}
           >
             Применить фильтры
           </Button>

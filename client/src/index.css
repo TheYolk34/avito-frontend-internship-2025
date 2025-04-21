@@ -1,5 +1,16 @@
 body {
   margin: 0;
-  overflow: hidden;
+  padding: 0;
+  background-color:  #ededed;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+html, body {
+  overflow: auto; 
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none;
 }
