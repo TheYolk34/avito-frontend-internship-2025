@@ -117,7 +117,7 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ open, onClose }) => {
         }}
       >
         <Typography variant="h5" sx={{ mb: 0, fontWeight: 'bold' }}>
-          Создание Заявки
+          Создание Задачи
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Controller
